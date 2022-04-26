@@ -1,3 +1,5 @@
-export default function Home() {
-	return <h1>Create</h1>;
+import { Typography } from '@mui/material';
+
+export default function Create() {
+	return <Typography variant='h1'>Create</Typography>;
 }
