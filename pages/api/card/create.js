@@ -7,14 +7,14 @@ export default async function handler(request, response) {
 		const newCardData = JSON.parse(request.body);
 		await dbConnect();
 
-		let user = await User.findOne({ name: data.name });
+		let user = await User.findOne({ name: newCardData.name });
 		if (!user) {
-			user = await User.create({ name: data.name });
+			user = await User.create({ name: newCardData.name });
 		}
 
 		const newCard = await Card.create({
 			content: newCardData.content,
-			user: newCardData.id,
+			user: user.id,
 		}); // before:  ...newCardData
 
 		response.status(200).json({
