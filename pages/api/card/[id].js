@@ -1,24 +1,30 @@
 import { getCards } from '../../../src/services/get-cards';
+import Card from '../../../src/models/Card';
 
-export default function handler(request, response) {
+export default async function handler(request, response) {
 	const { id } = request.query;
-	const cards = getCards();
 
+	/*
+	const cards = getCards();
 	const index = cards.findIndex((card) => card.id === id);
+	*/
 
 	if (request.method === 'DELETE') {
+		const deletedCard = await Card.findByIdAndDelete(id);
 		response
 			.status(200)
 			.json({ message: 'card deleteed', card: cards[index] });
 	} else if (request.method === 'PUT') {
-		const changeCard = JSON.parse(
-			request.body
-		); /* eigentlich mit try/catch*/
+		const changedCardData = JSON.parse(request.body);
+		const changedCard = await Card.findByIdAndUpdate(id, changedCardData, {
+			new: true,
+		});
 		response
 			.status(200)
-			.json({ message: 'card deleteed', card: changeCard });
+			.json({ message: 'card deleteed', card: changedCard });
 	} else {
-		response.status(200).json(cards[index]);
+		const singleCard = await Card.findById(id);
+		response.status(200).json(singleCard); //before: cards[index]
 	}
 
 	/*const singleCard = cards.filter((card) => card.id === id);
