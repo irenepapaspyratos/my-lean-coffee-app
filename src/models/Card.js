@@ -1,4 +1,4 @@
-import mongoose from 'mogoose';
+import mongoose from 'mongoose';
 
 const cardSchema = new mongoose.Schema({ content: String, name: String });
 
