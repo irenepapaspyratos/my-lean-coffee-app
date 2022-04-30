@@ -1,11 +1,11 @@
 import { Typography } from '@mui/material';
 import { SWRConfig } from 'swr';
-import CardGrid from '../src/components/cardGrid';
+import CardGrid from '../src/components/CardGrid';
 import { getCards } from '../src/services/get-cards';
 import swrFetcher from '../src/lib/swr-fetcher';
 
-export function getStaticProps() {
-	const cards = getCards();
+export async function getStaticProps() {
+	const cards = await getCards();
 
 	return {
 		props: {
