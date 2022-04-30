@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import CardCreateForm from '../src/components/cardCreateForm';
+import CardCreateForm from '../src/components/CardCreateForm';
 
 export default function Create() {
 	return (
