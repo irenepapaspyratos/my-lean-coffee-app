@@ -13,7 +13,7 @@ export default async function handler(request, response) {
 		const deletedCard = await Card.findByIdAndDelete(id);
 		response
 			.status(200)
-			.json({ message: 'card deleteed', card: cards[index] });
+			.json({ message: 'card deleteed', card: deletedCard }); //before: cards[index]
 	} else if (request.method === 'PUT') {
 		const changedCardData = JSON.parse(request.body);
 		const changedCard = await Card.findByIdAndUpdate(id, changedCardData, {
