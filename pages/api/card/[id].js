@@ -13,7 +13,7 @@ export default async function handler(request, response) {
 		const deletedCard = await Card.findByIdAndDelete(id);
 		response
 			.status(200)
-			.json({ message: 'card deleteed', card: deletedCard }); //before: cards[index]
+			.json({ message: 'card deleted', card: deletedCard }); //before: cards[index]
 	} else if (request.method === 'PUT') {
 		const changedCardData = JSON.parse(request.body);
 		const changedCard = await Card.findByIdAndUpdate(id, changedCardData, {
@@ -21,7 +21,7 @@ export default async function handler(request, response) {
 		});
 		response
 			.status(200)
-			.json({ message: 'card deleteed', card: changedCard });
+			.json({ message: 'card deleted', card: changedCard });
 	} else {
 		const singleCard = await Card.findById(id);
 		response.status(200).json(singleCard); //before: cards[index]
